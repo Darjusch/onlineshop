@@ -1,23 +1,3 @@
-**_ Sign Out _**
-
-Scenario - successful sign out
-
-GIVEN I’m an app user
-
-AND I’m logged in
-
-AND I navigated to the main menu
-
-WHEN I entered 2
-
-AND I selected ‘Sign Out’ in main menu
-
-THEN I see sign out message ‘Have a nice day! Look forward to welcoming back!’
-
-AND I see main menu
-
-AND instead of ‘Sign Out’ I see ‘Sign In’ label
-
 **_ Product Catalog _**
 
 Scenario - list products
@@ -28,7 +8,7 @@ WHEN I entered 3
 
 AND I selected ‘Product Catalog’ in main menu
 
-THEN I see list of products printed to console
+THEN I see list of products printed to console // Create some products
 
 Technical notes:
 
@@ -50,7 +30,7 @@ AND I navigated to Product Catalog menu
 
 WHEN I enter ‘menu’ in console
 
-THEN I navigated back to the main menu
+THEN I navigated back to the main menu // When writing menu go back to main so basically ;return;
 
 Scenario - add product to cart
 
