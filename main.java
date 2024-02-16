@@ -2,34 +2,45 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 class Main {
+    static final String EXIT_STRING = "exit";
+    static final String MAIN_MENU_TEXT_NOT_LOGGED_IN = """
+            (1) Sign Up
+            (2) Sign Out
+            (3) Product Catalog
+            (4) My Orders
+            (5) Settings
+            (6) Customer List""";
+
+    static final String MAIN_MENU_TEXT_LOGGED_IN = """
+            (1) Sign Up
+            (2) Sign In
+            (3) Product Catalog
+            (4) My Orders
+            (5) Settings
+            (6) Customer List""";
+
     public static void main(String[] args) {
         SignUpMenu signUpMenu = new SignUpMenu();
-        String mainMenuText;
+
         while (true) {
-            if (signUpMenu.signedUp) {
-                mainMenuText = """
-                        (1) Sign Up
-                        (2) Sign Out
-                        (3) Product Catalog
-                        (4) My Orders
-                        (5) Settings
-                        (6) Customer List""";
-            } else {
-                mainMenuText = """
-                        (1) Sign Up
-                        (2) Sign In / Sign Out
-                        (3) Product Catalog
-                        (4) My Orders
-                        (5) Settings
-                        (6) Customer List""";
-            }
+
             Scanner sc = new Scanner(System.in);
             System.out.println("Select one of the following options by typing one of the numbers: ");
-            System.out.println(mainMenuText);
+            if (signUpMenu.signedUp) {
+                System.out.println(MAIN_MENU_TEXT_LOGGED_IN);
+
+            } else {
+                System.out.println(MAIN_MENU_TEXT_LOGGED_IN);
+
+            }
             try {
-                int userInput = sc.nextInt();
-                if (userInput >= 1 && userInput <= 6) {
-                    switch (userInput) {
+                String userInput = sc.nextLine();
+                if (userInput.equals(EXIT_STRING)) {
+                    System.exit(0);
+                }
+                int userChoice = Integer.parseInt(userInput);
+                if (userChoice >= 1 && userChoice <= 6) {
+                    switch (userChoice) {
                         case 1:
                             signUpMenu.signUp();
                             break;
