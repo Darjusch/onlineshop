@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import src.exceptions.IncorrectNumberException;
 import src.menu.SignInMenu;
+import src.menu.SignOutMenu;
 import src.menu.SignUpMenu;
 import src.state.ApplicationContext;
 
@@ -27,17 +28,19 @@ class Main {
             (6) Customer List""";
 
     public static void main(String[] args) {
-        ApplicationContext applicationContext = new ApplicationContext();
-        SignUpMenu signUpMenu = new SignUpMenu(applicationContext);
-        SignInMenu signInMenu = new SignInMenu(applicationContext);
+        ApplicationContext context = new ApplicationContext();
+        SignUpMenu signUpMenu = new SignUpMenu(context);
+        SignInMenu signInMenu = new SignInMenu(context);
+        SignOutMenu signOutMenu = new SignOutMenu(context);
+
         while (true) {
 
             Scanner sc = new Scanner(System.in);
             System.out.println("Select one of the following options by typing one of the numbers: ");
-            if (applicationContext.getLoggedInUser() != null) {
+            if (context.getLoggedInUser() != null) {
                 System.out.println(MAIN_MENU_TEXT_LOGGED_IN);
             } else {
-                System.out.println(MAIN_MENU_TEXT_LOGGED_IN);
+                System.out.println(MAIN_MENU_TEXT_NOT_LOGGED_IN);
             }
             try {
                 String userInput = sc.nextLine();
@@ -51,7 +54,12 @@ class Main {
                             signUpMenu.start();
                             break;
                         case 2:
-                            signInMenu.start();
+                            System.out.println(context.getLoggedInUser());
+                            if (context.getLoggedInUser() == null) {
+                                signInMenu.start();
+                            } else {
+                                signOutMenu.start();
+                            }
                         default:
                             break;
                     }
