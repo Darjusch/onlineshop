@@ -5,13 +5,18 @@ import java.util.Scanner;
 
 import src.enteties.DefaultUser;
 import src.service.DefaultUserManagementService;
+import src.state.ApplicationContext;
 
-public class SignUpMenu {
+public class SignUpMenu implements Menu {
 
-    public boolean signedUp = false;
+    ApplicationContext context;
 
-    public void signUp() {
-        System.out.println("Welcome to the SignUp: ");
+    public SignUpMenu(ApplicationContext context) {
+        this.context = context;
+    }
+
+    @Override
+    public void start() {
         Scanner sc = new Scanner(System.in);
         try {
             System.out.println("Please enter your first name: ");
@@ -26,12 +31,20 @@ public class SignUpMenu {
                     userEmail);
             DefaultUserManagementService defaultUserManagementService = new DefaultUserManagementService();
             String MESSAGE = defaultUserManagementService.registerUser(defaultUser);
+            if (MESSAGE.equals("New user is created")) {
+                context.setLoggedInUser(defaultUser);
+            }
             System.out.println(MESSAGE);
-            this.signedUp = true;
             return;
         } catch (NoSuchElementException | IllegalStateException e) {
             System.out.println("Please enter valid information");
             // e.printStackTrace();
         }
+    }
+
+    @Override
+    public void printMenuHeader() {
+        System.out.println("***** Sign Up *****");
+
     }
 }

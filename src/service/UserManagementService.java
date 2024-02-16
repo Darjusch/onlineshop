@@ -4,4 +4,6 @@ import src.enteties.User;
 
 public interface UserManagementService {
     String registerUser(User user);
+
+    String loginUser(User user);
 }

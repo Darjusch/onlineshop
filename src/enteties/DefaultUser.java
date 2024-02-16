@@ -21,6 +21,11 @@ public class DefaultUser implements User {
         this.userEmail = userEmail;
     }
 
+    public DefaultUser(String userEmail, String userPassword) {
+        this.userEmail = userEmail;
+        this.userPassword = userPassword;
+    }
+
     public int getUserId() {
         return userId;
     }

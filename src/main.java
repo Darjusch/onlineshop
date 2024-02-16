@@ -3,7 +3,10 @@ package src;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+import src.exceptions.IncorrectNumberException;
+import src.menu.SignInMenu;
 import src.menu.SignUpMenu;
+import src.state.ApplicationContext;
 
 class Main {
     static final String EXIT_STRING = "exit";
@@ -24,18 +27,17 @@ class Main {
             (6) Customer List""";
 
     public static void main(String[] args) {
-        SignUpMenu signUpMenu = new SignUpMenu();
-
+        ApplicationContext applicationContext = new ApplicationContext();
+        SignUpMenu signUpMenu = new SignUpMenu(applicationContext);
+        SignInMenu signInMenu = new SignInMenu(applicationContext);
         while (true) {
 
             Scanner sc = new Scanner(System.in);
             System.out.println("Select one of the following options by typing one of the numbers: ");
-            if (signUpMenu.signedUp) {
+            if (applicationContext.getLoggedInUser() != null) {
                 System.out.println(MAIN_MENU_TEXT_LOGGED_IN);
-
             } else {
                 System.out.println(MAIN_MENU_TEXT_LOGGED_IN);
-
             }
             try {
                 String userInput = sc.nextLine();
@@ -46,8 +48,10 @@ class Main {
                 if (userChoice >= 1 && userChoice <= 5) {
                     switch (userChoice) {
                         case 1:
-                            signUpMenu.signUp();
+                            signUpMenu.start();
                             break;
+                        case 2:
+                            signInMenu.start();
                         default:
                             break;
                     }

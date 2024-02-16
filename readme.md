@@ -1,88 +1,89 @@
-## The ID number should be automatically incremented for each new user (static counter field should be a part of DefaultUser class)
+**_ Sign Out _**
 
-Scenario - new user sign up - unique email successful validation
-
-GIVEN I’m an app user
-AND I see main menu in console
-
-WHEN I entered 1
-
-AND I selected ‘Sign Up’ in main menu
-
-THEN registration process is started
-
-AND I asked to enter my first name
-
-AND I asked to enter my last name
-
-AND I asked to enter my password
-
-AND I asked to enter my email
-
-AND I enter unique email
-
-AND application successfully registered me
-
-AND I see notification that ‘new user is created’
-
-AND I navigated back to main menu
-
-AND instead of ‘Sign In’ I see ‘Sign Out’ label
-
----
-
-Scenario - new user sign up - unique email unsuccessful validation
+Scenario - successful sign out
 
 GIVEN I’m an app user
-AND I see main menu in console
 
-WHEN I entered 1
+AND I’m logged in
 
-AND I selected ‘Sign Up’ in main menu
+AND I navigated to the main menu
 
-THEN registration process is started
+WHEN I entered 2
 
-AND I asked to enter my first name
+AND I selected ‘Sign Out’ in main menu
 
-AND I asked to enter my last name
+THEN I see sign out message ‘Have a nice day! Look forward to welcoming back!’
 
-AND I asked to enter my password
+AND I see main menu
 
-AND I asked to enter my email
+AND instead of ‘Sign Out’ I see ‘Sign In’ label
 
-AND I enter NOT unique email
+**_ Product Catalog _**
 
-AND application doesn’t register me
-
-AND I see notification that ‘This email is already used by another user. Please, use another email’
-
-AND I navigated back to main menu
-
----
-
-Scenario - new user sign up - empty email unsuccessful validation
+Scenario - list products
 
 GIVEN I’m an app user
-AND I see main menu in console
 
-WHEN I entered 1
+WHEN I entered 3
 
-AND I selected ‘Sign Up’ in main menu
+AND I selected ‘Product Catalog’ in main menu
 
-THEN registration process is started
+THEN I see list of products printed to console
 
-AND I asked to enter my first name
+Technical notes:
 
-AND I asked to enter my last name
+Product has next fields:
 
-AND I asked to enter my password
+int id
 
-AND I asked to enter my email
+String productName
 
-AND I enter empty email
+String categoryName
 
-AND application doesn’t register me
+double price
 
-AND I see notification that ‘You have to input email to register. Please, try one more time’
+Scenario - navigate back to menu
 
-AND I navigated back to main menu
+GIVEN I’m an app user
+
+AND I navigated to Product Catalog menu
+
+WHEN I enter ‘menu’ in console
+
+THEN I navigated back to the main menu
+
+Scenario - add product to cart
+
+GIVEN I’m an app user
+
+AND I entered 3
+
+AND I selected ‘Product Catalog’ in main menu
+
+AND I see product list
+
+AND I see message ‘Enter product id to add it to the cart or ‘menu’ if you want to navigate back to the main menu’
+
+WHEN I entered any product id
+
+THEN I see the message ‘Product <PRODUCT_NAME> has been added to your cart. If you want to add a new product - enter the product id. If you want to proceed with checkout - enter word ‘checkout’ to console’
+
+AND I see product list again
+
+Scenario - add product to cart - error handling
+
+GIVEN I’m an app user
+
+AND I entered 3
+
+AND I selected ‘Product Catalog’ in main menu
+
+AND I see product list
+
+AND I see message ‘Enter product id to add it to the cart or ‘menu’ if you want to navigate back to the main menu’
+
+WHEN I entered any random number that doesn't match with product id
+
+THEN I see the message ‘Please, enter product ID if you want to add product to cart. Or enter ‘checkout’ if you want to proceed with checkout. Or enter ‘menu’ if you want to navigate back to the main menu.’
+
+AND I see product list again
