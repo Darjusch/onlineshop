@@ -39,7 +39,7 @@ class Main {
                     System.exit(0);
                 }
                 int userChoice = Integer.parseInt(userInput);
-                if (userChoice >= 1 && userChoice <= 6) {
+                if (userChoice >= 1 && userChoice <= 5) {
                     switch (userChoice) {
                         case 1:
                             signUpMenu.signUp();
@@ -48,7 +48,7 @@ class Main {
                             break;
                     }
                 } else {
-                    throw new IncorrectNumberException("The number has to be 1 >= and <= 6 : " + userInput);
+                    throw new IncorrectNumberException("The number has to be 1 >= and <= 5 : " + userInput);
                 }
             } catch (NoSuchElementException | IllegalStateException e) {
                 System.out.println("Please enter a valid number i.e. 1");
