@@ -1,33 +1,88 @@
-Scenario - main menu
+## The ID number should be automatically incremented for each new user (static counter field should be a part of DefaultUser class)
+
+Scenario - new user sign up - unique email successful validation
 
 GIVEN I’m an app user
+AND I see main menu in console
 
-WHEN I run the program
+WHEN I entered 1
 
-THEN I see main menu
+AND I selected ‘Sign Up’ in main menu
 
-Tech notes:
-Main menu consists of the next items:
+THEN registration process is started
 
-(1) Sign Up
+AND I asked to enter my first name
 
-(2) Sign In / Sign Out
+AND I asked to enter my last name
 
-(3) Product Catalog
+AND I asked to enter my password
 
-(4) My Orders
+AND I asked to enter my email
 
-(5) Settings
+AND I enter unique email
 
-(6) Customer List
+AND application successfully registered me
 
-When User is logged in, then paragraph 2 label is changed to “Sign Out” instead of Sign In.
+AND I see notification that ‘new user is created’
 
-Signup notes:
+AND I navigated back to main menu
 
-User is requested to input his/her:
+AND instead of ‘Sign In’ I see ‘Sign Out’ label
 
-name, email, age.
+---
 
-if correct input return to main menu.
-On the main menu SignUp should be cahnged to SignOut.
+Scenario - new user sign up - unique email unsuccessful validation
+
+GIVEN I’m an app user
+AND I see main menu in console
+
+WHEN I entered 1
+
+AND I selected ‘Sign Up’ in main menu
+
+THEN registration process is started
+
+AND I asked to enter my first name
+
+AND I asked to enter my last name
+
+AND I asked to enter my password
+
+AND I asked to enter my email
+
+AND I enter NOT unique email
+
+AND application doesn’t register me
+
+AND I see notification that ‘This email is already used by another user. Please, use another email’
+
+AND I navigated back to main menu
+
+---
+
+Scenario - new user sign up - empty email unsuccessful validation
+
+GIVEN I’m an app user
+AND I see main menu in console
+
+WHEN I entered 1
+
+AND I selected ‘Sign Up’ in main menu
+
+THEN registration process is started
+
+AND I asked to enter my first name
+
+AND I asked to enter my last name
+
+AND I asked to enter my password
+
+AND I asked to enter my email
+
+AND I enter empty email
+
+AND application doesn’t register me
+
+AND I see notification that ‘You have to input email to register. Please, try one more time’
+
+AND I navigated back to main menu

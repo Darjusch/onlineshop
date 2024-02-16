@@ -22,10 +22,11 @@ public class SignUpMenu {
             String userPassword = sc.nextLine();
             System.out.println("Please enter your Email: ");
             String userEmail = sc.nextLine();
-            System.out.println("New user is created");
             DefaultUser defaultUser = new DefaultUser(userFirstName, userLastName, userPassword,
                     userEmail);
-            new DefaultUserManagementService().registerUser(defaultUser);
+            DefaultUserManagementService defaultUserManagementService = new DefaultUserManagementService();
+            String MESSAGE = defaultUserManagementService.registerUser(defaultUser);
+            System.out.println(MESSAGE);
             this.signedUp = true;
             return;
         } catch (NoSuchElementException | IllegalStateException e) {
