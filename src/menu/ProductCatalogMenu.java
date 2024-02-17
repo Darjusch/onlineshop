@@ -34,7 +34,7 @@ public class ProductCatalogMenu implements Menu {
                 int id = Integer.parseInt(userInput);
                 Product product = context.getProduct(id);
                 if (product != null) {
-                    System.out.println("Product <PRODUCT_NAME> has been added to your cart");
+                    System.out.println("Product " + product.getProductName() + " has been added to your cart");
                     System.out.println("If you want to add a new product - enter the product id");
                     System.out.println("If you want to proceed with checkout - enter word 'checkout' to console");
                     // TODO Add product to Cart
