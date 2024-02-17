@@ -1,7 +1,7 @@
 package src.enteties;
 
 public class DefaultProduct implements Product {
-    int productCounter = 0;
+    private int productCounter = 0;
 
     int productId;
     String productName;
@@ -10,6 +10,20 @@ public class DefaultProduct implements Product {
 
     {
         productId = ++productCounter;
+    }
+
+    public DefaultProduct(String productName, String categoryName, double price) {
+        this.productName = productName;
+        this.categoryName = categoryName;
+        this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Product ID: " + productId + "\n" +
+                "Product Name: " + productName + "\n" +
+                "Category Name: " + categoryName + "\n" +
+                "Price: " + price + "\n" + "-----------" + "\n";
     }
 
     public double getPrice() {
