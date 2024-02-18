@@ -1,6 +1,8 @@
 package src.state;
 
 import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 import src.enteties.DefaultProduct;
 import src.enteties.Product;
@@ -30,7 +32,7 @@ public class ApplicationContext {
 
     public void addProductToCart(Product product) {
         if (cart.length >= productCounter) {
-            this.cart = Arrays.copyOf(cart, cart.length * 2);
+            this.cart = Arrays.copyOf(cart, cart.length + DEFAULT_CART_CAPACITY);
         }
         this.cart[productCounter] = product;
         productCounter++;
@@ -38,14 +40,20 @@ public class ApplicationContext {
     }
 
     public void executeOrder() {
-        // Do something with the cart
-        // and then clearCart
+        for (int i = 0; i < productCounter; i++) {
+            purchaseHistory.add(cart[i]);
+        }
         clearCart();
     }
 
     private void clearCart() {
-        this.cart = new Product[DEFAULT_CART_CAPACITY];
+        // Set each element of the cart to null
+        Arrays.fill(cart, 0, productCounter, null);
+        // Reset productCounter
+        productCounter = 0;
     }
+
+    private List<Product> purchaseHistory = new ArrayList<Product>();
 
     public Product[] getProducts() {
         return products;
