@@ -23,7 +23,9 @@ public class ApplicationContext {
     private Product[] cart = new Product[DEFAULT_CART_CAPACITY];
 
     public Product[] getCart() {
-        return cart;
+        Product[] filteredRealProducts = Arrays.stream(cart).filter((product) -> product != null)
+                .toArray(Product[]::new);
+        return filteredRealProducts;
     }
 
     public void addProductToCart(Product product) {

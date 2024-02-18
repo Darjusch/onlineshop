@@ -30,9 +30,14 @@ public class ProductCatalogMenu implements Menu {
             if (userInput.equals("menu")) {
                 return;
             } else if (userInput.equals("checkout")) {
-                CheckoutMenu checkoutMenu = new CheckoutMenu(context);
-                checkoutMenu.start();
-                return;
+                if (context.getCart().length > 0) {
+                    CheckoutMenu checkoutMenu = new CheckoutMenu(context);
+                    checkoutMenu.start();
+                    return;
+                } else {
+                    System.out.println(
+                            "Your cart is empty. Please, add product to cart first and then proceed with checkout");
+                }
             }
             try {
                 int id = Integer.parseInt(userInput);
