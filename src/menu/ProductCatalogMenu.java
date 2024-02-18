@@ -30,7 +30,7 @@ public class ProductCatalogMenu implements Menu {
             if (userInput.equals("menu")) {
                 return;
             } else if (userInput.equals("checkout")) {
-                if (context.getLoggedInUser().equals(null)) {
+                if (context.getLoggedInUser() == null) {
                     System.out.println("You are not logged in. Please, sign in or create new account");
                     return;
                 } else if (context.getCart().length > 0) {

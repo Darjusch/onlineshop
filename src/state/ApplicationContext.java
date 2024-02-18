@@ -47,9 +47,7 @@ public class ApplicationContext {
     }
 
     private void clearCart() {
-        // Set each element of the cart to null
         Arrays.fill(cart, 0, productCounter, null);
-        // Reset productCounter
         productCounter = 0;
     }
 
@@ -69,6 +67,10 @@ public class ApplicationContext {
 
     public User getLoggedInUser() {
         return loggedInUser;
+    }
+
+    public List<Product> getPurchaseHistory() {
+        return purchaseHistory;
     }
 
 }

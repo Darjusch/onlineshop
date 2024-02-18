@@ -4,6 +4,7 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import src.exceptions.IncorrectNumberException;
+import src.menu.MyOrderMenu;
 import src.menu.ProductCatalogMenu;
 import src.menu.SignInMenu;
 import src.menu.SignOutMenu;
@@ -34,7 +35,7 @@ class Main {
         SignInMenu signInMenu = new SignInMenu(context);
         SignOutMenu signOutMenu = new SignOutMenu(context);
         ProductCatalogMenu productCatalogMenu = new ProductCatalogMenu(context);
-
+        MyOrderMenu myOrderMenu = new MyOrderMenu(context);
         while (true) {
 
             Scanner sc = new Scanner(System.in);
@@ -64,6 +65,8 @@ class Main {
                             }
                         case 3:
                             productCatalogMenu.start();
+                        case 4:
+                            myOrderMenu.start();
                         default:
                             break;
                     }
