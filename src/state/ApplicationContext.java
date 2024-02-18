@@ -35,6 +35,16 @@ public class ApplicationContext {
         return;
     }
 
+    public void executeOrder() {
+        // Do something with the cart
+        // and then clearCart
+        clearCart();
+    }
+
+    private void clearCart() {
+        this.cart = new Product[DEFAULT_CART_CAPACITY];
+    }
+
     public Product[] getProducts() {
         return products;
     }

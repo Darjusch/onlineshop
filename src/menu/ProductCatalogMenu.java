@@ -30,7 +30,7 @@ public class ProductCatalogMenu implements Menu {
             if (userInput.equals("menu")) {
                 return;
             } else if (userInput.equals("checkout")) {
-                CheckoutMenu checkoutMenu = new CheckoutMenu();
+                CheckoutMenu checkoutMenu = new CheckoutMenu(context);
                 checkoutMenu.start();
                 return;
             }
