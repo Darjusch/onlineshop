@@ -63,10 +63,13 @@ class Main {
                             } else {
                                 signOutMenu.start();
                             }
+                            break;
                         case 3:
                             productCatalogMenu.start();
+                            break;
                         case 4:
                             myOrderMenu.start();
+                            break;
                         default:
                             break;
                     }
