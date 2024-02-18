@@ -30,7 +30,10 @@ public class ProductCatalogMenu implements Menu {
             if (userInput.equals("menu")) {
                 return;
             } else if (userInput.equals("checkout")) {
-                if (context.getCart().length > 0) {
+                if (context.getLoggedInUser().equals(null)) {
+                    System.out.println("You are not logged in. Please, sign in or create new account");
+                    return;
+                } else if (context.getCart().length > 0) {
                     CheckoutMenu checkoutMenu = new CheckoutMenu(context);
                     checkoutMenu.start();
                     return;
