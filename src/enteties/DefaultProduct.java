@@ -1,8 +1,7 @@
 package src.enteties;
 
 public class DefaultProduct implements Product {
-    // TODO fix bug all products have ID 1
-    private static int productCounter = 0; // Make it static
+    private static int productCounter = 0;
 
     int productId;
     String productName;
@@ -10,7 +9,7 @@ public class DefaultProduct implements Product {
     double price;
 
     public DefaultProduct(String productName, String categoryName, double price) {
-        this.productId = productCounter++; // Increment for each instance
+        this.productId = productCounter++;
         this.productName = productName;
         this.categoryName = categoryName;
         this.price = price;
