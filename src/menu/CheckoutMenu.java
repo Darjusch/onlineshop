@@ -27,7 +27,8 @@ public class CheckoutMenu implements Menu {
                     context.executeOrder();
                     return;
                 } else {
-                    System.out.println("Please enter a valid credit card number (8 to 19 digits) without spaces");
+                    System.out.println(
+                            "You entered invalid credit card number. Valid credit card should contain between 8 and 19 digits. Please, try one more time.");
                 }
             } catch (Exception e) {
                 System.out.println("Please enter a valid credit card number (8 to 19 digits) without spaces");
