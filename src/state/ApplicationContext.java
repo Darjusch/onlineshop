@@ -17,6 +17,23 @@ public class ApplicationContext {
             new DefaultProduct("TV", "Electronic", 180),
             new DefaultProduct("Computer", "Electronic", 520),
     };
+    private int productCounter = 0;
+    private static int DEFAULT_CART_CAPACITY = 10;
+    // Should we keep the cart in here? How to make this design decision?
+    private Product[] cart = new Product[DEFAULT_CART_CAPACITY];
+
+    public Product[] getCart() {
+        return cart;
+    }
+
+    public void addProductToCart(Product product) {
+        if (cart.length >= productCounter) {
+            this.cart = Arrays.copyOf(cart, cart.length * 2);
+        }
+        this.cart[productCounter] = product;
+        productCounter++;
+        return;
+    }
 
     public Product[] getProducts() {
         return products;

@@ -27,17 +27,21 @@ public class ProductCatalogMenu implements Menu {
         Scanner sc = new Scanner(System.in);
         while (true) {
             String userInput = sc.nextLine();
-            if (userInput == "menu" || userInput == "checkout") {
+            if (userInput.equals("menu")) {
+                return;
+            } else if (userInput.equals("checkout")) {
+                CheckoutMenu checkoutMenu = new CheckoutMenu();
+                checkoutMenu.start();
                 return;
             }
             try {
                 int id = Integer.parseInt(userInput);
                 Product product = context.getProduct(id);
                 if (product != null) {
+                    context.addProductToCart(product);
                     System.out.println("Product " + product.getProductName() + " has been added to your cart");
                     System.out.println("If you want to add a new product - enter the product id");
                     System.out.println("If you want to proceed with checkout - enter word 'checkout' to console");
-                    // TODO Add product to Cart
                 } else {
                     System.out.println("Please, enter product ID if you want to add product to cart.");
                     System.out.println("Or enter 'checkout' if you want to proceed with checkout.");
