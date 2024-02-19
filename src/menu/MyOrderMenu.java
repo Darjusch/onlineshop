@@ -14,6 +14,10 @@ public class MyOrderMenu implements Menu {
 
     @Override
     public void start() {
+        if (context.getLoggedInUser() == null) {
+            System.out.println("Please, log in or create new account to see list of your orders");
+            return;
+        }
         printMenuHeader();
         System.out.println("This is your Purchase History: ");
         String productsString = context.getPurchaseHistory().stream()
