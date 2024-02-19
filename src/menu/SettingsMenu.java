@@ -19,6 +19,7 @@ public class SettingsMenu implements Menu {
     @Override
     public void start() {
         ChangePasswordMenu changePasswordMenu = new ChangePasswordMenu(context);
+        ChangeEmailMenu changeEmailMenu = new ChangeEmailMenu(context);
         try {
             System.out.println(SETTINGS_OPTIONS);
             Scanner sc = new Scanner(System.in);
@@ -27,6 +28,8 @@ public class SettingsMenu implements Menu {
                 case 1:
                     changePasswordMenu.start();
                     break;
+                case 2:
+                    changeEmailMenu.start();
                 default:
                     break;
             }

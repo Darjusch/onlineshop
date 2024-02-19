@@ -1,29 +1,3 @@
-**_ Settings _**
-
-Scenario - change password
-
-GIVEN I’m an app user
-
-AND I’m logged in
-
-AND I entered 5
-
-AND I selected ‘Settings’ in main menu
-
-AND I see list of options to change settings
-
-AND I select option number 1 ‘Change Password’
-
-AND I enter 1 in console
-
-AND I am asked to enter new password
-
-WHEN I entered new password
-
-THEN I see message ‘Your password has been successfully changed’
-
-## AND I navigated to main menu
-
 Scenario - change email
 
 GIVEN I’m an app user
@@ -46,7 +20,7 @@ WHEN I entered new email
 
 THEN I see message ‘Your email has been successfully changed’
 
-AND I navigated to main menu
+## AND I navigated to main menu
 
 Scenario - setting - error handling - not valid option
 
