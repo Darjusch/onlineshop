@@ -1,19 +1,3 @@
-Scenario - setting - navigate back to the main menu
-
-GIVEN I’m an app user
-
-AND I’m logged in
-
-AND I entered 5
-
-AND I selected ‘Settings’ in main menu
-
-AND I see list of options to change settings
-
-WHEN I enter ‘menu’
-
-THEN I navigated back to the main menu
-
 Scenario - setting - error handling - not logged in
 
 GIVEN I’m an app user

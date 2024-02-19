@@ -22,6 +22,10 @@ public class SettingsMenu implements Menu {
         ChangePasswordMenu changePasswordMenu = new ChangePasswordMenu(context);
         ChangeEmailMenu changeEmailMenu = new ChangeEmailMenu(context);
         try {
+            if (context.getLoggedInUser() == null) {
+                System.out.println("Please, log in or create new account to change your account settings");
+                return;
+            }
             System.out.println(SETTINGS_OPTIONS);
             while (true) {
                 System.out.println("Please select one of the options by typing either 1 or 2 and then press enter");
