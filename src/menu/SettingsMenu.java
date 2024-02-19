@@ -9,6 +9,7 @@ public class SettingsMenu implements Menu {
             (1) Change Password
             (2) Change Email
             """;
+    static final String MENU_STRING = "menu";
 
     ApplicationContext context;
 
@@ -22,16 +23,24 @@ public class SettingsMenu implements Menu {
         ChangeEmailMenu changeEmailMenu = new ChangeEmailMenu(context);
         try {
             System.out.println(SETTINGS_OPTIONS);
-            Scanner sc = new Scanner(System.in);
-            int optionSelected = sc.nextInt();
-            switch (optionSelected) {
-                case 1:
-                    changePasswordMenu.start();
-                    break;
-                case 2:
-                    changeEmailMenu.start();
-                default:
-                    break;
+            while (true) {
+                System.out.println("Please select one of the options by typing either 1 or 2 and then press enter");
+                Scanner sc = new Scanner(System.in);
+                String userInput = sc.nextLine();
+                if (userInput.equals(MENU_STRING)) {
+                    return;
+                }
+                int userChoice = Integer.parseInt(userInput);
+                switch (userChoice) {
+                    case 1:
+                        changePasswordMenu.start();
+                        break;
+                    case 2:
+                        changeEmailMenu.start();
+                    default:
+                        System.out.println("Only 1, 2 is allowed. Try one more time");
+                        break;
+                }
             }
         } catch (Exception e) {
             System.out.println("Please select one of the options by typing either 1 or 2 and then press enter");
