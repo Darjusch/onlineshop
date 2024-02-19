@@ -5,6 +5,8 @@ import java.util.Arrays;
 import src.enteties.User;
 
 public class DefaultUserManagementService implements UserManagementService {
+    private static DefaultUserManagementService instance;
+
     private int lastUserIndex;
     private static final int DEFAULT_USERS_CAPACITY = 10;
     private User[] users;
@@ -18,6 +20,14 @@ public class DefaultUserManagementService implements UserManagementService {
 
     {
         users = new User[DEFAULT_USERS_CAPACITY];
+
+    }
+
+    public static DefaultUserManagementService getInstance() {
+        if (instance == null) {
+            instance = new DefaultUserManagementService();
+        }
+        return instance;
     }
 
     public String registerUser(User user) {

@@ -5,11 +5,13 @@ import java.util.Scanner;
 
 import src.enteties.DefaultUser;
 import src.service.DefaultUserManagementService;
+import src.service.UserManagementService;
 import src.state.ApplicationContext;
 
 public class SignUpMenu implements Menu {
 
     ApplicationContext context;
+    private UserManagementService userManagementService = DefaultUserManagementService.getInstance();
 
     public SignUpMenu(ApplicationContext context) {
         this.context = context;
@@ -29,8 +31,7 @@ public class SignUpMenu implements Menu {
             String userEmail = sc.nextLine();
             DefaultUser defaultUser = new DefaultUser(userFirstName, userLastName, userPassword,
                     userEmail);
-            DefaultUserManagementService defaultUserManagementService = new DefaultUserManagementService();
-            String MESSAGE = defaultUserManagementService.registerUser(defaultUser);
+            String MESSAGE = userManagementService.registerUser(defaultUser);
             if (MESSAGE.equals("New user is created")) {
                 context.setLoggedInUser(defaultUser);
             }

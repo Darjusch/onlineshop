@@ -5,6 +5,7 @@ import java.util.Scanner;
 import src.enteties.DefaultUser;
 import src.enteties.User;
 import src.service.DefaultUserManagementService;
+import src.service.UserManagementService;
 import src.state.ApplicationContext;
 
 public class SignInMenu implements Menu {
@@ -14,6 +15,8 @@ public class SignInMenu implements Menu {
     public SignInMenu(ApplicationContext context) {
         this.context = context;
     }
+
+    private UserManagementService userManagementService = DefaultUserManagementService.getInstance();
 
     @Override
     public void start() {
@@ -26,7 +29,8 @@ public class SignInMenu implements Menu {
             System.out.println("Please enter your Password");
             String userPassword = sc.nextLine();
             User user = new DefaultUser(userEmail, userPassword);
-            String MESSAGE = new DefaultUserManagementService().loginUser(user);
+
+            String MESSAGE = userManagementService.loginUser(user);
             System.out.println(MESSAGE);
             if (MESSAGE.equals("Login successfull!")) {
                 context.setLoggedInUser(user);

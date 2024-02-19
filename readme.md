@@ -1,21 +1,3 @@
-## AND I navigated back to the main menu
-
-Scenario - list my orders - error handling - no orders
-
-GIVEN I’m an app user
-
-AND I’m logged in
-
-AND I don’t have any purchases yet
-
-WHEN I entered 4
-
-AND I selected ‘My Orders’ in main menu
-
-THEN I navigated to ‘My Orders’
-
-AND I see the message ‘Unfortunately, you don’t have any orders yet. Navigate back to main menu to place a new order’
-
 **_ Settings _**
 
 Scenario - change password
@@ -40,7 +22,7 @@ WHEN I entered new password
 
 THEN I see message ‘Your password has been successfully changed’
 
-AND I navigated to main menu
+## AND I navigated to main menu
 
 Scenario - change email
 

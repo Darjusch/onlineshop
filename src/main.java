@@ -6,6 +6,7 @@ import java.util.Scanner;
 import src.exceptions.IncorrectNumberException;
 import src.menu.MyOrderMenu;
 import src.menu.ProductCatalogMenu;
+import src.menu.SettingsMenu;
 import src.menu.SignInMenu;
 import src.menu.SignOutMenu;
 import src.menu.SignUpMenu;
@@ -36,6 +37,7 @@ class Main {
         SignOutMenu signOutMenu = new SignOutMenu(context);
         ProductCatalogMenu productCatalogMenu = new ProductCatalogMenu(context);
         MyOrderMenu myOrderMenu = new MyOrderMenu(context);
+        SettingsMenu settingsMenu = new SettingsMenu(context);
         while (true) {
 
             Scanner sc = new Scanner(System.in);
@@ -57,7 +59,6 @@ class Main {
                             signUpMenu.start();
                             break;
                         case 2:
-                            System.out.println(context.getLoggedInUser());
                             if (context.getLoggedInUser() == null) {
                                 signInMenu.start();
                             } else {
@@ -70,6 +71,8 @@ class Main {
                         case 4:
                             myOrderMenu.start();
                             break;
+                        case 5:
+                            settingsMenu.start();
                         default:
                             break;
                     }
