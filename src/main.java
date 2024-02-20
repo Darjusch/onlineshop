@@ -4,6 +4,7 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import src.exceptions.IncorrectNumberException;
+import src.menu.CustomerListMenu;
 import src.menu.MyOrderMenu;
 import src.menu.ProductCatalogMenu;
 import src.menu.SettingsMenu;
@@ -38,6 +39,7 @@ class Main {
         ProductCatalogMenu productCatalogMenu = new ProductCatalogMenu(context);
         MyOrderMenu myOrderMenu = new MyOrderMenu(context);
         SettingsMenu settingsMenu = new SettingsMenu(context);
+        CustomerListMenu customerListMenu = new CustomerListMenu();
         while (true) {
 
             Scanner sc = new Scanner(System.in);
@@ -53,7 +55,7 @@ class Main {
                     System.exit(0);
                 }
                 int userChoice = Integer.parseInt(userInput);
-                if (userChoice >= 1 && userChoice <= 5) {
+                if (userChoice >= 1 && userChoice <= 6) {
                     switch (userChoice) {
                         case 1:
                             signUpMenu.start();
@@ -73,11 +75,15 @@ class Main {
                             break;
                         case 5:
                             settingsMenu.start();
+                            break;
+                        case 6:
+                            customerListMenu.start();
+                            break;
                         default:
                             break;
                     }
                 } else {
-                    throw new IncorrectNumberException("The number has to be 1 >= and <= 5 : " + userInput);
+                    throw new IncorrectNumberException("The number has to be 1 >= and <= 6 : " + userInput);
                 }
             } catch (NoSuchElementException | IllegalStateException e) {
                 System.out.println("Please enter a valid number i.e. 1");

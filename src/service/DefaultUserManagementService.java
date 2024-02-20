@@ -20,7 +20,6 @@ public class DefaultUserManagementService implements UserManagementService {
 
     {
         users = new User[DEFAULT_USERS_CAPACITY];
-
     }
 
     public static DefaultUserManagementService getInstance() {
