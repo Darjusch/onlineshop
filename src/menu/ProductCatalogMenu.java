@@ -5,6 +5,8 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 import src.enteties.Product;
+import src.service.DefaultProductManagementService;
+import src.service.ProductManagementService;
 import src.state.ApplicationContext;
 
 public class ProductCatalogMenu implements Menu {
@@ -16,8 +18,9 @@ public class ProductCatalogMenu implements Menu {
 
     @Override
     public void start() {
+        ProductManagementService productManagementInstance = DefaultProductManagementService.getInstance();
         printMenuHeader();
-        Product[] products = context.getProducts();
+        Product[] products = productManagementInstance.getProducts();
         String productsString = Arrays.stream(products)
                 .map(Product::toString)
                 .collect(Collectors.joining(""));
@@ -44,7 +47,7 @@ public class ProductCatalogMenu implements Menu {
             }
             try {
                 int id = Integer.parseInt(userInput);
-                Product product = context.getProduct(id);
+                Product product = productManagementInstance.getProductById(id);
                 if (product != null) {
                     context.addProductToCart(product);
                     System.out.println("Product " + product.getProductName() + " has been added to your cart");
