@@ -1,15 +1,19 @@
 package src.menu;
 
-import src.enteties.Product;
+import src.enteties.Order;
+import src.service.OrderManagementService;
 import src.state.ApplicationContext;
 import java.util.stream.Collectors;
+import java.util.Arrays;
 
 public class MyOrderMenu implements Menu {
 
-    ApplicationContext context;
+    private ApplicationContext context;
+    private OrderManagementService orderManagementInstance;
 
-    public MyOrderMenu(ApplicationContext context) {
+    public MyOrderMenu(ApplicationContext context, OrderManagementService orderManagementService) {
         this.context = context;
+        this.orderManagementInstance = orderManagementService;
     }
 
     @Override
@@ -18,17 +22,17 @@ public class MyOrderMenu implements Menu {
             System.out.println("Please, log in or create new account to see list of your orders");
             return;
         }
-        if (context.getPurchaseHistory().size() < 0) {
+        if (orderManagementInstance.getOrders()[0] == null) {
             System.out.println(
                     "Unfortunately, you don't have any orders yet. Navigate back to main menu to place a new order");
             return;
         }
         printMenuHeader();
         System.out.println("This is your Purchase History: ");
-        String productsString = context.getPurchaseHistory().stream()
-                .map(Product::toString)
+        String orderString = Arrays.stream(orderManagementInstance.getOrders())
+                .map(Order::toString)
                 .collect(Collectors.joining(""));
-        System.out.println(productsString);
+        System.out.println(orderString);
         return;
     }
 

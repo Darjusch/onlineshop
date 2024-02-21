@@ -6,4 +6,7 @@ public interface UserManagementService {
     String registerUser(User user);
 
     String loginUser(User user);
+
+    User[] getUsers();
+
 }

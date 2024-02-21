@@ -4,21 +4,30 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
+import src.enteties.Cart;
+import src.enteties.Order;
 import src.enteties.Product;
-import src.service.DefaultProductManagementService;
+import src.enteties.impl.DefaultCart;
+import src.enteties.impl.DefaultOrder;
+import src.service.OrderManagementService;
 import src.service.ProductManagementService;
 import src.state.ApplicationContext;
 
 public class ProductCatalogMenu implements Menu {
-    ApplicationContext context;
+    private ApplicationContext context;
+    private ProductManagementService productManagementInstance;
+    private OrderManagementService orderManagementInstance;
 
-    public ProductCatalogMenu(ApplicationContext context) {
+    public ProductCatalogMenu(ApplicationContext context, ProductManagementService productManagementInstance,
+            OrderManagementService orderManagementInstance) {
         this.context = context;
+        this.productManagementInstance = productManagementInstance;
+        this.orderManagementInstance = orderManagementInstance;
     }
 
     @Override
     public void start() {
-        ProductManagementService productManagementInstance = DefaultProductManagementService.getInstance();
+        Cart cart = new DefaultCart();
         printMenuHeader();
         Product[] products = productManagementInstance.getProducts();
         String productsString = Arrays.stream(products)
@@ -36,8 +45,9 @@ public class ProductCatalogMenu implements Menu {
                 if (context.getLoggedInUser() == null) {
                     System.out.println("You are not logged in. Please, sign in or create new account");
                     return;
-                } else if (context.getCart().length > 0) {
-                    CheckoutMenu checkoutMenu = new CheckoutMenu(context);
+                } else if (cart.getProducts().length > 0) {
+                    Order order = new DefaultOrder(1, cart.getProducts());
+                    CheckoutMenu checkoutMenu = new CheckoutMenu(order, cart, orderManagementInstance);
                     checkoutMenu.start();
                     return;
                 } else {
@@ -49,7 +59,7 @@ public class ProductCatalogMenu implements Menu {
                 int id = Integer.parseInt(userInput);
                 Product product = productManagementInstance.getProductById(id);
                 if (product != null) {
-                    context.addProductToCart(product);
+                    cart.addProduct(product);
                     System.out.println("Product " + product.getProductName() + " has been added to your cart");
                     System.out.println("If you want to add a new product - enter the product id");
                     System.out.println("If you want to proceed with checkout - enter word 'checkout' to console");

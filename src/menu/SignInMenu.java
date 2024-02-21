@@ -2,21 +2,20 @@ package src.menu;
 
 import java.util.Scanner;
 
-import src.enteties.DefaultUser;
 import src.enteties.User;
-import src.service.DefaultUserManagementService;
+import src.enteties.impl.DefaultUser;
 import src.service.UserManagementService;
 import src.state.ApplicationContext;
 
 public class SignInMenu implements Menu {
 
     private ApplicationContext context;
+    private UserManagementService userManagementService;
 
-    public SignInMenu(ApplicationContext context) {
+    public SignInMenu(ApplicationContext context, UserManagementService userManagementService) {
         this.context = context;
+        this.userManagementService = userManagementService;
     }
-
-    private UserManagementService userManagementService = DefaultUserManagementService.getInstance();
 
     @Override
     public void start() {

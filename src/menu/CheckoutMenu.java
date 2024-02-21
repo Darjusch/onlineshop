@@ -2,13 +2,19 @@ package src.menu;
 
 import java.util.Scanner;
 
-import src.state.ApplicationContext;
+import src.enteties.Cart;
+import src.enteties.Order;
+import src.service.OrderManagementService;
 
 public class CheckoutMenu implements Menu {
-    ApplicationContext context;
+    private Order order;
+    private Cart cart;
+    private OrderManagementService orderManagementInstance;
 
-    public CheckoutMenu(ApplicationContext context) {
-        this.context = context;
+    public CheckoutMenu(Order order, Cart cart, OrderManagementService orderManagementInstance) {
+        this.order = order;
+        this.cart = cart;
+        this.orderManagementInstance = orderManagementInstance;
     }
 
     @Override
@@ -21,10 +27,12 @@ public class CheckoutMenu implements Menu {
                 String userInput = sc.nextLine();
                 Integer.parseInt(userInput); // Only check if number
                 // valid creditcard 8 to 19 digits
-                if (userInput.length() >= 8 && userInput.length() <= 19) {
+                if (order.isCreditCardNumberValid(userInput)) {
+                    order.setCreditCardNumber(userInput);
+                    orderManagementInstance.addOrder(order);
+                    cart.clear();
                     System.out.println(
                             "Thanks a lot for your purchase. Details about order delivery are sent to your email.");
-                    context.executeOrder();
                     return;
                 } else {
                     System.out.println(

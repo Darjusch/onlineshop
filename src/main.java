@@ -11,6 +11,12 @@ import src.menu.SettingsMenu;
 import src.menu.SignInMenu;
 import src.menu.SignOutMenu;
 import src.menu.SignUpMenu;
+import src.service.OrderManagementService;
+import src.service.ProductManagementService;
+import src.service.UserManagementService;
+import src.service.impl.DefaultOrderManagementService;
+import src.service.impl.DefaultProductManagementService;
+import src.service.impl.DefaultUserManagementService;
 import src.state.ApplicationContext;
 
 class Main {
@@ -32,14 +38,19 @@ class Main {
             (6) Customer List""";
 
     public static void main(String[] args) {
-        ApplicationContext context = new ApplicationContext();
-        SignUpMenu signUpMenu = new SignUpMenu(context);
-        SignInMenu signInMenu = new SignInMenu(context);
+        UserManagementService userManagementServiceInstance = DefaultUserManagementService.getInstance();
+        ProductManagementService productManagementInstance = DefaultProductManagementService.getInstance();
+        OrderManagementService orderManagementInstance = DefaultOrderManagementService.getInstance();
+
+        ApplicationContext context = ApplicationContext.getInstance();
+        SignUpMenu signUpMenu = new SignUpMenu(context, userManagementServiceInstance);
+        SignInMenu signInMenu = new SignInMenu(context, userManagementServiceInstance);
         SignOutMenu signOutMenu = new SignOutMenu(context);
-        ProductCatalogMenu productCatalogMenu = new ProductCatalogMenu(context);
-        MyOrderMenu myOrderMenu = new MyOrderMenu(context);
+        ProductCatalogMenu productCatalogMenu = new ProductCatalogMenu(context, productManagementInstance,
+                orderManagementInstance);
+        MyOrderMenu myOrderMenu = new MyOrderMenu(context, orderManagementInstance);
         SettingsMenu settingsMenu = new SettingsMenu(context);
-        CustomerListMenu customerListMenu = new CustomerListMenu();
+        CustomerListMenu customerListMenu = new CustomerListMenu(userManagementServiceInstance);
         while (true) {
 
             Scanner sc = new Scanner(System.in);

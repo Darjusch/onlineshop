@@ -1,7 +1,9 @@
-package src.service;
+package src.service.impl;
 
-import src.enteties.DefaultProduct;
 import src.enteties.Product;
+import src.enteties.impl.DefaultProduct;
+import src.service.ProductManagementService;
+
 import java.util.Arrays;;
 
 public class DefaultProductManagementService implements ProductManagementService {

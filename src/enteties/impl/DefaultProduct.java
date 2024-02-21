@@ -1,4 +1,6 @@
-package src.enteties;
+package src.enteties.impl;
+
+import src.enteties.Product;
 
 public class DefaultProduct implements Product {
     private static int productCounter = 0;

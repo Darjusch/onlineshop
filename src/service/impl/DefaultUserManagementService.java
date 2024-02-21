@@ -1,8 +1,9 @@
-package src.service;
+package src.service.impl;
 
 import java.util.Arrays;
 
 import src.enteties.User;
+import src.service.UserManagementService;
 
 public class DefaultUserManagementService implements UserManagementService {
     private static DefaultUserManagementService instance;
@@ -22,7 +23,10 @@ public class DefaultUserManagementService implements UserManagementService {
         users = new User[DEFAULT_USERS_CAPACITY];
     }
 
-    public static DefaultUserManagementService getInstance() {
+    private DefaultUserManagementService() {
+    }
+
+    public static UserManagementService getInstance() {
         if (instance == null) {
             instance = new DefaultUserManagementService();
         }

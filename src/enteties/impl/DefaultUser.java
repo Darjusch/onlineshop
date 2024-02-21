@@ -1,4 +1,6 @@
-package src.enteties;
+package src.enteties.impl;
+
+import src.enteties.User;
 
 public class DefaultUser implements User {
 
