@@ -1,9 +1,5 @@
 === Technical details ===
 
-General technical requirements:
-
-1. instance of each service (UserManagementService, OrderManagementService, ProductManagementService, ApplicationContext) exist in a single copy during the program execution. Access to the single copy is possible via static getInstance() method of each specific type. And I can’t create objects of these types via constructor.
-
 2. Each implementation of service should have this method
 
 void clearServiceState()
@@ -13,84 +9,6 @@ for the sake of testing. This method should reset state of service to default. T
 To reset user counter - implement clearState() method in the DefaultUser class.
 
 3. During implementation of this task you have to implement next interfaces:
-
-public interface Cart {
-
-boolean isEmpty();
-
-void addProduct(Product productById);
-
-Product[] getProducts();
-
-void clear();
-
-}
-
-public interface Order {
-
-boolean isCreditCardNumberValid(String userInput);
-
-void setCreditCardNumber(String userInput);
-
-void setProducts(Product[] products);
-
-void setCustomerId(int customerId);
-
-int getCustomerId();
-
-}
-
-public interface Product {
-
-int getId();
-
-String getProductName();
-
-}
-
-public interface User {
-
-String getFirstName();
-
-String getLastName();
-
-String getPassword();
-
-String getEmail();
-
-int getId();
-
-void setPassword(String newPassword);
-
-void setEmail(String newEmail);
-
-}
-
-public interface Menu {
-
-void start();
-
-void printMenuHeader();
-
-}
-
-public interface OrderManagementService {
-
-void addOrder(Order order);
-
-Order[] getOrdersByUserId(int userId);
-
-Order[] getOrders();
-
-}
-
-public interface ProductManagementService {
-
-Product[] getProducts();
-
-Product getProductById(int productIdToAddToCart);
-
-}
 
 public interface UserManagementService {
 

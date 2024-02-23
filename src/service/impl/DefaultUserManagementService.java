@@ -33,6 +33,13 @@ public class DefaultUserManagementService implements UserManagementService {
         return instance;
     }
 
+    void clearServiceState() {
+        instance = null;
+        lastUserIndex = 0;
+        users = new User[DEFAULT_USERS_CAPACITY];
+        return;
+    }
+
     public String registerUser(User user) {
         if (user == null) {
             return NO_EMAIL_ERROR;

@@ -43,14 +43,20 @@ public class DefaultOrderManagementService implements OrderManagementService {
         return Arrays.stream(orderHistory).filter((order) -> order.getCustomerId() == userId).toArray(Order[]::new);
     }
 
-    // Method to check if the order history array is full
+    // For testing
+    void clearServiceState() {
+        orderCounter = 0;
+        orderHistory = new Order[DEFAULT_ORDER_HISTORY_SIZE];
+        instance = null;
+        return;
+    }
+
     private boolean isOrderHistoryFull() {
         return orderCounter == orderHistory.length;
     }
 
-    // Method to resize the order history array
     private void resizeOrderHistory() {
-        int newSize = orderHistory.length * 2; // Double the size (you can choose any resizing strategy)
+        int newSize = orderHistory.length * 2;
         Order[] newOrderHistory = new Order[newSize];
         System.arraycopy(orderHistory, 0, newOrderHistory, 0, orderHistory.length);
         orderHistory = newOrderHistory;

@@ -29,6 +29,11 @@ public class DefaultProductManagementService implements ProductManagementService
         return instance;
     }
 
+    void clearServiceState() {
+        instance = null;
+        return;
+    }
+
     @Override
     public Product[] getProducts() {
         return products;
