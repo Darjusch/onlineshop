@@ -74,4 +74,12 @@ public class DefaultUserManagementService implements UserManagementService {
     public User[] getUsers() {
         return users;
     }
+
+    public User getUserByEmail(String userEmail) {
+        return Arrays.stream(users)
+                .filter((currentUser) -> currentUser != null && currentUser.getUserEmail() != null)
+                .filter((currentUser) -> currentUser.getUserEmail().equals(userEmail))
+                .findFirst()
+                .orElse(null);
+    }
 }
