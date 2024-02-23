@@ -1,14 +1,13 @@
-package src.menu;
+package src.menu.impl;
 
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-import src.enteties.Cart;
 import src.enteties.Order;
 import src.enteties.Product;
-import src.enteties.impl.DefaultCart;
 import src.enteties.impl.DefaultOrder;
+import src.menu.Menu;
 import src.service.OrderManagementService;
 import src.service.ProductManagementService;
 import src.state.ApplicationContext;
@@ -27,7 +26,6 @@ public class ProductCatalogMenu implements Menu {
 
     @Override
     public void start() {
-        Cart cart = new DefaultCart();
         printMenuHeader();
         Product[] products = productManagementInstance.getProducts();
         String productsString = Arrays.stream(products)
@@ -45,9 +43,9 @@ public class ProductCatalogMenu implements Menu {
                 if (context.getLoggedInUser() == null) {
                     System.out.println("You are not logged in. Please, sign in or create new account");
                     return;
-                } else if (cart.getProducts().length > 0) {
-                    Order order = new DefaultOrder(1, cart.getProducts());
-                    CheckoutMenu checkoutMenu = new CheckoutMenu(order, cart, orderManagementInstance);
+                } else if (context.getSessionCart().getProducts().length > 0) {
+                    Order order = new DefaultOrder(1, context.getSessionCart().getProducts());
+                    CheckoutMenu checkoutMenu = new CheckoutMenu(order, orderManagementInstance, context);
                     checkoutMenu.start();
                     return;
                 } else {
@@ -59,7 +57,7 @@ public class ProductCatalogMenu implements Menu {
                 int id = Integer.parseInt(userInput);
                 Product product = productManagementInstance.getProductById(id);
                 if (product != null) {
-                    cart.addProduct(product);
+                    context.getSessionCart().addProduct(product);
                     System.out.println("Product " + product.getProductName() + " has been added to your cart");
                     System.out.println("If you want to add a new product - enter the product id");
                     System.out.println("If you want to proceed with checkout - enter word 'checkout' to console");

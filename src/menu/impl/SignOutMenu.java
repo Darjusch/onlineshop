@@ -1,5 +1,6 @@
-package src.menu;
+package src.menu.impl;
 
+import src.menu.Menu;
 import src.state.ApplicationContext;
 
 public class SignOutMenu implements Menu {

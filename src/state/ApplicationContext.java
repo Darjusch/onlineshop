@@ -37,25 +37,17 @@ public class ApplicationContext {
     }
 
     public void setMainMenu(Menu menu) {
-
         this.mainMenu = menu;
-
     }
 
     public Menu getMainMenu() {
-
         return this.mainMenu;
-
     }
 
     public Cart getSessionCart() {
-
         if (this.sessionCart == null) {
-
             this.sessionCart = new DefaultCart();
-
         }
-
         return this.sessionCart;
 
     }

@@ -1,9 +1,10 @@
-package src.menu;
+package src.menu.impl;
 
 import java.util.Scanner;
 
 import src.enteties.User;
 import src.enteties.impl.DefaultUser;
+import src.menu.Menu;
 import src.service.UserManagementService;
 import src.state.ApplicationContext;
 

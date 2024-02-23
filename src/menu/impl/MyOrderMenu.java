@@ -1,6 +1,7 @@
-package src.menu;
+package src.menu.impl;
 
 import src.enteties.Order;
+import src.menu.Menu;
 import src.service.OrderManagementService;
 import src.state.ApplicationContext;
 import java.util.stream.Collectors;

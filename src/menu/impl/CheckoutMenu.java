@@ -1,20 +1,21 @@
-package src.menu;
+package src.menu.impl;
 
 import java.util.Scanner;
 
-import src.enteties.Cart;
 import src.enteties.Order;
+import src.menu.Menu;
 import src.service.OrderManagementService;
+import src.state.ApplicationContext;
 
 public class CheckoutMenu implements Menu {
     private Order order;
-    private Cart cart;
     private OrderManagementService orderManagementInstance;
+    private ApplicationContext context;
 
-    public CheckoutMenu(Order order, Cart cart, OrderManagementService orderManagementInstance) {
+    public CheckoutMenu(Order order, OrderManagementService orderManagementInstance, ApplicationContext context) {
         this.order = order;
-        this.cart = cart;
         this.orderManagementInstance = orderManagementInstance;
+        this.context = context;
     }
 
     @Override
@@ -30,7 +31,7 @@ public class CheckoutMenu implements Menu {
                 if (order.isCreditCardNumberValid(userInput)) {
                     order.setCreditCardNumber(userInput);
                     orderManagementInstance.addOrder(order);
-                    cart.clear();
+                    context.getSessionCart().clear();
                     System.out.println(
                             "Thanks a lot for your purchase. Details about order delivery are sent to your email.");
                     return;

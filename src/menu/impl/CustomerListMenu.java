@@ -1,9 +1,10 @@
-package src.menu;
+package src.menu.impl;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
 import src.enteties.User;
+import src.menu.Menu;
 import src.service.UserManagementService;
 
 public class CustomerListMenu implements Menu {

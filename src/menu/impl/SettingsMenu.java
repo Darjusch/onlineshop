@@ -1,7 +1,8 @@
-package src.menu;
+package src.menu.impl;
 
 import java.util.Scanner;
 
+import src.menu.Menu;
 import src.state.ApplicationContext;
 
 public class SettingsMenu implements Menu {
